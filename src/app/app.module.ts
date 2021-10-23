@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { SearchInputComponent } from './search/search-input/search-input.component';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { SpotifyProvider } from './spotify/spotify.provider';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SpotifyProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

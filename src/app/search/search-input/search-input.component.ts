@@ -10,7 +10,7 @@ export class SearchInputComponent implements OnInit {
   @Input() searchInput: string = '';
 
   constructor() { }
-
+  
   ngOnInit(): void {
   }
 
