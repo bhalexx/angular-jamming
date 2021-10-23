@@ -6,11 +6,13 @@
 <div class="content" role="main">
   <!-- Search input -->
   <app-search-input></app-search-input>
-
-  <!-- Search results -->  
-  <app-search-results></app-search-results>
-  <!-- Playlist -->
-  <div class="card"></div>
+  
+  <div class="row">
+    <!-- Search results -->  
+    <app-search-results class="col"></app-search-results>
+    <!-- Playlist -->
+    <app-playlist class="col"></app-playlist>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
