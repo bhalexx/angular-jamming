@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+/* Variables ====================================== */
+@import './assets/scss/_variables';
+/* Mixins ========================================= */
+@import './assets/scss/_mixins';
+
+html, body { padding: 0; margin: 0;}
+
+body { color: $textColor;}
+h1, h2, h3, h4, h5, h6 { font-family: $fontTitle;}
+
+.toolbar { background: $mainColor; text-align: center; padding: 0.5rem 0;}
+
+button { 
+    cursor: pointer; padding: 1rem 3rem; text-transform: uppercase; background-color: $mainColor; color: $textColor; border-radius: 30px; border: 1px solid $mainColor; font-family: $fontTitle; @include transition(background-color 0.3s);
+    &:hover { background-color: $textHighlighted;}
+}
