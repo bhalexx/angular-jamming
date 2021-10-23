@@ -11,6 +11,11 @@ h1, h2, h3, h4, h5, h6 { font-family: $fontTitle;}
 
 .toolbar { background: $mainColor; text-align: center; padding: 0.5rem 0;}
 
+.row { display: flex; margin: 1rem auto;}
+.col { width: 50%; padding: 0 15px;}
+
+.card { background: rgba($mainColor, 0.7); padding: 15px;}
+
 button { 
     cursor: pointer; padding: 1rem 3rem; text-transform: uppercase; background-color: $mainColor; color: $textColor; border-radius: 30px; border: 1px solid $mainColor; font-family: $fontTitle; @include transition(background-color 0.3s);
     &:hover { background-color: $textHighlighted;}
