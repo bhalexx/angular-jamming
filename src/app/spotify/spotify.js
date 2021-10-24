@@ -8,6 +8,7 @@ const userProfileEndpoint = "/v1/me";
 const createPlaylistEndpoint = "/v1/users/";
 const addTracksEndpoint = "/v1/playlists/";
 const responseType = "token";
+// modification needed here.
 // let redirectUri = "http://localhost:3000/";
 let redirectUri = "http://localhost:4200/";
 const scope = "playlist-modify-public";
@@ -41,6 +42,7 @@ const Spotify = {
       return accessToken;
     } else {
     //  redirectUri depends if you are in developement mode or not
+      // modification needed here.
       // if (window.location.href !== redirectUri) {
       //   redirectUri = "http://jamming_capucine_soum.surge.sh";
       // }
