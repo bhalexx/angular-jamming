@@ -16,7 +16,7 @@ export class SearchInputComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    const searchTerms = form.value['search'];
+    const searchTerms = form.value['searchTerms'];
     let results = this.spotifyProvider.search(searchTerms);
     console.log(results);
   }
