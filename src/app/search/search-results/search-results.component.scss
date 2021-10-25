@@ -1,0 +1,16 @@
+/* Variables ====================================== */
+@import '../../../assets/scss/variables';
+/* Mixins ========================================= */
+@import '../../../assets/scss/_mixins';
+
+#tracks-list {
+    li { 
+        border-bottom: 1px solid $textColor; padding-bottom: 1rem; list-style: none; display: flex; align-items: center; justify-content: space-between;
+        h3 { margin-bottom: 10px;}
+        span.infos { font-weight: 100;}
+        a { 
+            cursor: pointer; padding: 0.5rem; font-size: 1.5rem; @include transition(color .25s);
+            &:hover { color: $textHighlighted;}
+        }
+    }
+}

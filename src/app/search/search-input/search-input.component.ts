@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SpotifyProvider } from '../../spotify/spotify.provider';
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-search-input',
@@ -10,14 +10,13 @@ import { SpotifyProvider } from '../../spotify/spotify.provider';
 export class SearchInputComponent implements OnInit {
   @Input() searchInput: string = '';
 
-  constructor(private spotifyProvider: SpotifyProvider) { }
+  constructor(private searchService: SearchService) { }
   
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
     const searchTerms = form.value['searchTerms'];
-    let results = this.spotifyProvider.search(searchTerms);
-    console.log(results);
+    this.searchService.search(searchTerms);
   }
 }
