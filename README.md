@@ -5,9 +5,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Instructions
 Convert Jamming React app to Angular app, following those rules:
-1. Utiliser RxJS au maximum quand c’est intéressant
-2. Réencapsuler Spotifiy.js sans le modifier pour le proposer sous la forme d’un bloc de construction standard Angular
-3. Utiliser VS Code pour coder
+- Utiliser RxJS au maximum quand c’est intéressant
+- Réencapsuler Spotifiy.js sans le modifier pour le proposer sous la forme d’un bloc de construction standard Angular
+- Utiliser VS Code pour coder
 
 ## Some words about the development
 ### Spotify
@@ -27,3 +27,7 @@ The Playlist component (`app/services/playlist.service.ts`) is following the sam
 ### Models
 Models (`app/models`) were created to be able to validate TS code and be more precise about functions' expecting/returning data and use Spotify data in component's views.
 There surely is another better way to organize code, would like to hear/read/learn about it!
+
+### Git flow
+Used as much as possible the Git flow and tried to get familiar with Kanban way.
+Following [this project table](https://github.com/bhalexx/angular-jamming/projects/1) feature branches were created to do what feature card expected. When a feature was fully created, feature branch were merged with the develop one.
