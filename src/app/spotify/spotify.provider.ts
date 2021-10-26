@@ -1,3 +1,4 @@
+import { TrackList } from '../models/tracklist.model';
 import { Spotify } from './spotify';
 
 export class SpotifyProvider {
@@ -11,7 +12,7 @@ export class SpotifyProvider {
     /**
      * Search for a track name with the Spotify search API
      */
-    search = (searchTerm: string): Promise<object> => {
+    search = (searchTerm: string): Promise<TrackList> => {
         return Spotify.search(searchTerm);
     }
 

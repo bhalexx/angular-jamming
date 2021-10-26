@@ -8,6 +8,8 @@ import { SearchInputComponent } from './search/search-input/search-input.compone
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { SpotifyProvider } from './spotify/spotify.provider';
+import { SearchService } from './services/search.service';
+import { PlaylistService } from './services/playlist.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,11 @@ import { SpotifyProvider } from './spotify/spotify.provider';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [SpotifyProvider],
+  providers: [
+    SpotifyProvider,
+    SearchService,
+    PlaylistService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
