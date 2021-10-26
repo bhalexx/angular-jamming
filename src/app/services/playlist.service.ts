@@ -27,4 +27,9 @@ export class PlaylistService {
         this.trackList.removeTrack(track);
         this.emitTracksSubject();
     }
+
+    resetPlaylist(): void {
+        this.trackList = new TrackList();
+        this.emitTracksSubject();
+    }
 }
