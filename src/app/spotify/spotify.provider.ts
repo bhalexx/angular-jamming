@@ -1,4 +1,4 @@
-import { TrackList } from '../search/tracklist.model';
+import { TrackList } from '../models/tracklist.model';
 import { Spotify } from './spotify';
 
 export class SpotifyProvider {

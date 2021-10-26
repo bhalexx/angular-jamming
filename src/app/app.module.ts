@@ -8,7 +8,8 @@ import { SearchInputComponent } from './search/search-input/search-input.compone
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { SpotifyProvider } from './spotify/spotify.provider';
-import { SearchService } from './search/search.service';
+import { SearchService } from './services/search.service';
+import { PlaylistService } from './services/playlist.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SearchService } from './search/search.service';
   ],
   providers: [
     SpotifyProvider,
-    SearchService
+    SearchService,
+    PlaylistService
   ],
   bootstrap: [AppComponent]
 })

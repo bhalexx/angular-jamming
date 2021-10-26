@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { SearchService } from '../search.service';
-import { Track } from '../track.model';
-import { TrackList } from '../tracklist.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SearchService } from '../../services/search.service';
+import { Track } from '../../models/track.model';
+import { TrackList } from '../../models/tracklist.model';
+import { PlaylistService } from 'src/app/services/playlist.service';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy  {
 
-  trackList: TrackList;
   tracks: Array<Track> = [];
-  tracksSubject: Subject<TrackList>;
+  trackListSubscription: Subscription;
 
-  constructor(private searchService: SearchService) { 
-    this.tracksSubject = searchService.tracksSubject;
-  }
+  constructor(private searchService: SearchService, private playlistService: PlaylistService) { }
 
   ngOnInit(): void {
-    this.tracksSubject.subscribe((value: TrackList) => {
-        this.trackList = value;
+    this.trackListSubscription = this.searchService.tracksSubject.subscribe((value: TrackList) => {
         this.updateTracks();        
       },
       (error) => {
@@ -33,14 +30,15 @@ export class SearchResultsComponent implements OnInit {
     );
   }
 
+  ngOnDestroy(): void {
+    this.trackListSubscription.unsubscribe();
+  }
+
   updateTracks(): void {
-    this.trackList.tracks.items.forEach(element => {
-      this.tracks.push(element);
-    });
+    this.tracks = this.searchService.trackList.tracks.items;
   }
 
   onAddToPlaylist(track: Track): void {
-    console.log(track);
+    this.playlistService.addToPlaylist(track);
   }
-
 }
