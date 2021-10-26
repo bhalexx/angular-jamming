@@ -18,7 +18,7 @@ Created a matching definition file (`app/spotify/spotify.d.ts`) and a SpotifyPro
 Three components were created:
 1. Search input (`app/components/search/search-input`)
 2. Search results (`app/components/search/search-results`)
-3. Playlist ((`app/components/playlist`))
+3. Playlist (`app/components/playlist`)
 
 A SearchService (`app/services/search.service.ts`) is injected in both of the search components and used as a bridge between those two. SearchResults are updated by SearchService observable (subject) subscription.
 
@@ -30,4 +30,4 @@ There surely is another better way to organize code, would like to hear/read/lea
 
 ### Git flow
 Used as much as possible the Git flow and tried to get familiar with Kanban way.
-Following [this project table](https://github.com/bhalexx/angular-jamming/projects/1) feature branches were created to do what feature card expected. When a feature was fully created, feature branch were merged with the develop one.
+Following [this project table](https://github.com/bhalexx/angular-jamming/projects/1) feature branches were created (e.g. `feature/#feature8`) to do what feature card expected. When a feature was fully created, feature branch were merged with the develop one.
