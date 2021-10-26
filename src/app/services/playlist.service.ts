@@ -7,12 +7,12 @@ import { SpotifyProvider } from '../spotify/spotify.provider';
 @Injectable()
 export class PlaylistService {
     trackList: TrackList = new TrackList();
-    trackListSubject = new Subject<TrackList>();
+    trackList$ = new Subject<TrackList>();
 
     constructor(private spotifyProvider: SpotifyProvider) { }
 
-    emitTracksSubject() {
-        this.trackListSubject.next(this.trackList);
+    emitTrackListSubject() {
+        this.trackList$.next(this.trackList);
     }
 
     addToPlaylist(track: Track): void {
@@ -20,13 +20,13 @@ export class PlaylistService {
         const alreadyExists = this.trackList.getTracks().find((t) => t.id === track.id);
         if (!alreadyExists) {
             this.trackList.addTrack(track);
-            this.emitTracksSubject();
+            this.emitTrackListSubject();
         }
     }
 
     removeFromPlaylist(track: Track): void {
         this.trackList.removeTrack(track);
-        this.emitTracksSubject();
+        this.emitTrackListSubject();
     }
 
     savePlaylist(playlistName: string): void {
@@ -39,6 +39,6 @@ export class PlaylistService {
 
     resetPlaylist(): void {
         this.trackList = new TrackList();
-        this.emitTracksSubject();
+        this.emitTrackListSubject();
     }
 }

@@ -19,7 +19,7 @@ export class PlaylistComponent implements OnInit, OnDestroy {
   constructor(private playlistService: PlaylistService, private spotifyProvider: SpotifyProvider) { }
 
   ngOnInit(): void {
-    this.trackListSubscription = this.playlistService.trackListSubject.subscribe((value: TrackList) => {
+    this.trackListSubscription = this.playlistService.trackList$.subscribe((value: TrackList) => {
         this.trackList = value;
         this.updateTracks();        
       },
