@@ -6,18 +6,18 @@ import { TrackList } from '../models/tracklist.model';
 @Injectable()
 export class SearchService {
     trackList: TrackList;
-    tracksSubject = new Subject<TrackList>();  
+    trackList$ = new Subject<TrackList>();  
     
     constructor(private spotifyProvider: SpotifyProvider) { }
 
-    emitTracksSubject() {
-        this.tracksSubject.next(this.trackList);
+    emitTrackListSubject() {
+        this.trackList$.next(this.trackList);
     }
 
     search = (searchTerms: string) => {        
         this.spotifyProvider.search(searchTerms).then((data: TrackList) => {
             this.trackList = data;
-            this.emitTracksSubject();
+            this.emitTrackListSubject();
         });
     }
 }

@@ -18,7 +18,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy  {
   constructor(private searchService: SearchService, private playlistService: PlaylistService) { }
 
   ngOnInit(): void {
-    this.trackListSubscription = this.searchService.tracksSubject.subscribe((value: TrackList) => {
+    this.trackListSubscription = this.searchService.trackList$.subscribe((value: TrackList) => {
         this.updateTracks();        
       },
       (error) => {
