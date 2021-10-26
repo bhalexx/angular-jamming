@@ -49,8 +49,9 @@ export class PlaylistComponent implements OnInit, OnDestroy {
     if (playlistName !== '' && playlistName !== null) {
       this.spotifyProvider.addTracks(playlistName, this.tracks).then((data) => {
         console.log(data);
-        // alert('Playlist créée avec succès, clique sur ok pour y accéder');
-        // window.open('https://open.spotify.com/playlist/' + data);
+        alert('Playlist créée avec succès');
+        this.playlistService.resetPlaylist();
+        window.open('https://open.spotify.com/collection/playlists');
       });
     } else {
       this.onSave();

@@ -4,15 +4,22 @@
 /* Mixins ========================================= */
 @import './assets/scss/_mixins';
 
-html, body { padding: 0; margin: 0;}
+html, body { padding: 0; margin: 0; overflow-x: hidden;}
 
 body { color: $textColor; background: url('assets/img/background_photo.jpg') center no-repeat; background-size: cover; font-family: $fontCommon;}
 h1, h2, h3, h4, h5, h6 { font-family: $fontTitle;}
 
 .toolbar { background: $mainColor; text-align: center; padding: 0.5rem 0;}
 
-.row { display: flex; margin: 1rem auto;}
-.col { width: 50%; padding: 0 15px;}
+.content { max-width: 90%; margin: 0 auto;}
+.row { 
+    display: flex; margin: 1rem -15px;
+    .col { width: 50%; padding: 0 15px;}
+    @include mobile {
+        flex-direction: column;
+        .col { width: 90%; margin: 0.5rem auto;}
+    }
+}
 
 .card { background: rgba($mainColor, 0.7); padding: 15px;}
 
