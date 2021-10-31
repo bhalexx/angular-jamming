@@ -1,20 +1,22 @@
 import { Track } from './track.model';
-import { TrackListContent } from './tracklist.content.model';
+import { SpotifyTrackListContent } from './spotify.tracklist.content.model';
 
 export class TrackList {
-    tracks: TrackListContent = new TrackListContent();
+    private tracks: Track[];
 
-    constructor() { }
-
-    public addTrack(track: Track): void {
-        this.tracks.addTrack(track);
+    constructor(tracks: Track[]) { 
+        this.tracks = tracks;
     }
 
-    public removeTrack(track: Track): void {
-        this.tracks.removeTrack(track);
+    public getTracks() {
+        return this.tracks;
     }
 
-    public getTracks(): Array<Track> {
-        return this.tracks.getTracks();
+    addTrack(track: Track) {
+        this.tracks.push(track);
+    }
+
+    removeTrack(track: Track) {
+        this.tracks.splice(this.tracks.findIndex(t => t.id === track.id), 1);
     }
 }
