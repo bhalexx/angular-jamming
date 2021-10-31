@@ -1,14 +1,15 @@
 import { Track } from './track.model';
-import { SpotifyTrackListContent } from './spotify.tracklist.content.model';
 
 export class TrackList {
     private tracks: Track[];
 
-    constructor(tracks: Track[]) { 
-        this.tracks = tracks;
+    constructor(tracks?: Track[]) { 
+        if (typeof tracks !== 'undefined') {
+            this.tracks = tracks;
+        }
     }
 
-    public getTracks() {
+    getTracks() {
         return this.tracks;
     }
 

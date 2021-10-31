@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private spotifyProvider: SpotifyProvider) { }
   
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   onSubmit() {

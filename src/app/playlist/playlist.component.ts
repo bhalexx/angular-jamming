@@ -9,7 +9,7 @@ import { SpotifyProvider } from '../spotify/spotify.provider';
   styleUrls: ['./playlist.component.scss']
 })
 export class PlaylistComponent implements OnInit {
-  trackList: TrackList = new TrackList([]);
+  trackList: TrackList = new TrackList();
 
   constructor(private spotifyProvider: SpotifyProvider) { }
 
@@ -17,7 +17,7 @@ export class PlaylistComponent implements OnInit {
   }
 
   onAddToPlaylist(track: Track) {
-    // Add track only if not alreay existing in tracklist
+    // Add track only if not already existing in tracklist
     const alreadyExists = this.trackList.getTracks().find((t) => t.id === track.id);
     if (!alreadyExists) {
         this.trackList.addTrack(track);         
@@ -42,6 +42,6 @@ export class PlaylistComponent implements OnInit {
   }
 
   resetPlaylist() {
-    this.trackList = new TrackList([]);
+    this.trackList = new TrackList();
   }
 }
