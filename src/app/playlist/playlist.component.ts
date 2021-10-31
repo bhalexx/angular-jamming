@@ -1,8 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Track } from '../models/track.model';
 import { TrackList } from '../models/tracklist.model';
-import { PlaylistService } from '../services/playlist.service';
 import { SpotifyProvider } from '../spotify/spotify.provider';
 
 @Component({
@@ -10,47 +8,40 @@ import { SpotifyProvider } from '../spotify/spotify.provider';
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.scss']
 })
-export class PlaylistComponent implements OnInit, OnDestroy {
+export class PlaylistComponent implements OnInit {
+  trackList: TrackList = new TrackList();
 
-  trackList: TrackList;
-  tracks: Array<Track> = [];
-  trackListSubscription: Subscription;
+  constructor(private spotifyProvider: SpotifyProvider) { }
 
-  constructor(private playlistService: PlaylistService, private spotifyProvider: SpotifyProvider) { }
-
-  ngOnInit(): void {
-    this.trackListSubscription = this.playlistService.trackList$.subscribe((value: TrackList) => {
-        this.trackList = value;
-        this.updateTracks();        
-      },
-      (error) => {
-        console.log('error' + error);
-      },
-      () => {
-        console.log('observable complete!');
-      }
-    );
+  ngOnInit() {
   }
 
-  ngOnDestroy(): void {
-    this.trackListSubscription.unsubscribe();
+  onAddToPlaylist(track: Track) {
+    // Add track only if not already existing in tracklist
+    const alreadyExists = this.trackList.getTracks().find((t) => t.id === track.id);
+    if (!alreadyExists) {
+        this.trackList.addTrack(track);         
+    }
   }
 
-  onRemoveFromPlaylist(track: Track): void {
-    this.playlistService.removeFromPlaylist(track);
+  onRemoveFromPlaylist(track: Track) {
+    this.trackList.removeTrack(track);
   }
 
-  updateTracks(): void {
-    this.tracks = this.trackList.tracks.items;
-  }
-
-  onSave(): void {
-    const playlistName = prompt('quel nom pour la playlist?');
+  async onSave() {
+    const playlistName = prompt('Give the playlist a name:');
     
     if (playlistName !== '' && playlistName !== null) {
-      this.playlistService.savePlaylist(playlistName);
-    } else {
-      this.onSave();
+      const spotifyPlaylist = await this.spotifyProvider.addTracks(playlistName, this.trackList.getTracks());
+      if (spotifyPlaylist.snapshot_id) {
+        alert('Playlist successfully created!');
+        this.resetPlaylist();
+        window.open('https://open.spotify.com/collection/playlists');
+      }
     }
+  }
+
+  resetPlaylist() {
+    this.trackList = new TrackList();
   }
 }

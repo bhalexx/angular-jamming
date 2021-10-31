@@ -1,6 +1,6 @@
 import { Artist } from "./artist.model";
 
-export class Album {
+export interface Album {
     album_type: string;
     artists: Artist[];
     available_markets: string[];

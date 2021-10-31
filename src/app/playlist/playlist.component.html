@@ -1,13 +1,15 @@
-<div class="card">
-    <h2>New Playlist</h2>
-    <ul id="playlist-tracks" class="tracklist">
-        <li *ngFor="let track of tracks" >
-            <div>
-                <h3>{{ track.name }}</h3>
-                <span class="infos">{{ track.artists[0].name }} | {{ track.album.name }}</span>
-            </div>
-            <a (click)="onRemoveFromPlaylist(track)">-</a>
-        </li>
-    </ul>
-    <button class="reverse" (click)="onSave()">Save to Spotify</button>
+<div class="col">
+    <div class="card">
+        <h2>New Playlist</h2>
+        <ul id="playlist-tracks" class="tracklist">
+            <li *ngFor="let track of trackList.getTracks()">
+                <div>
+                    <h3>{{ track.name }}</h3>
+                    <span class="infos">{{ track.artists[0].name }} | {{ track.album.name }}</span>
+                </div>
+                <a (click)="onRemoveFromPlaylist(track)">-</a>
+            </li>
+        </ul>
+        <button class="reverse" (click)="onSave()">Save to Spotify</button>
+    </div>
 </div>

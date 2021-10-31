@@ -4,18 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { SearchInputComponent } from './search/search-input/search-input.component';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { SearchComponent } from './search/search.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { SpotifyProvider } from './spotify/spotify.provider';
-import { SearchService } from './services/search.service';
-import { PlaylistService } from './services/playlist.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchInputComponent,
-    SearchResultsComponent,
+    SearchComponent,
     PlaylistComponent
   ],
   imports: [
@@ -24,9 +20,7 @@ import { PlaylistService } from './services/playlist.service';
     AppRoutingModule
   ],
   providers: [
-    SpotifyProvider,
-    SearchService,
-    PlaylistService
+    SpotifyProvider
   ],
   bootstrap: [AppComponent]
 })

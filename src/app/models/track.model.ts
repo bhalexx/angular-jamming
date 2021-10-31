@@ -1,7 +1,7 @@
 import { Album } from "./album.model";
 import { Artist } from "./artist.model";
 
-export class Track {
+export interface Track {
     album: Album;
     artists: Artist[];
     available_markets: string[];
@@ -17,6 +17,6 @@ export class Track {
     popularity: number;
     preview_url: null | string;
     track_number: number;
-    type: string = "track";
+    type: string;
     uri: string;
 }
