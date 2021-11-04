@@ -1,47 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Track } from '../models/track.model';
-import { TrackList } from '../models/tracklist.model';
+import { Component, Input } from '@angular/core';
 import { SpotifyProvider } from '../spotify/spotify.provider';
+import { Track } from '../track';
 
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.scss']
 })
-export class PlaylistComponent implements OnInit {
-  trackList: TrackList = new TrackList();
+export class PlaylistComponent {
+  tracks: Track[] = [];
 
-  constructor(private spotifyProvider: SpotifyProvider) { }
-
-  ngOnInit() {
-  }
-
-  onAddToPlaylist(track: Track) {
-    // Add track only if not already existing in tracklist
-    const alreadyExists = this.trackList.getTracks().find((t) => t.id === track.id);
-    if (!alreadyExists) {
-        this.trackList.addTrack(track);         
+  @Input()
+  set addedTrack(value: Track | undefined) {
+    if (typeof value !== 'undefined') {
+      this.tracks.push(value);
     }
   }
 
-  onRemoveFromPlaylist(track: Track) {
-    this.trackList.removeTrack(track);
+  constructor(private readonly spotify: SpotifyProvider) { }
+
+  onRemoveTrack(track: Track) {
+    this.tracks = this.tracks.filter(t => t.id !== track.id);
   }
 
-  async onSave() {
-    const playlistName = prompt('Give the playlist a name:');
-    
-    if (playlistName !== '' && playlistName !== null) {
-      const spotifyPlaylist = await this.spotifyProvider.addTracks(playlistName, this.trackList.getTracks());
-      if (spotifyPlaylist.snapshot_id) {
-        alert('Playlist successfully created!');
-        this.resetPlaylist();
-        window.open('https://open.spotify.com/collection/playlists');
-      }
+  onSave() {
+    const name = prompt("Give the playlist a name:");
+
+    if (typeof name === 'string') {
+      this.spotify.addTracks(name, this.tracks)
+        .subscribe({
+          error: () => alert(`Impossible to save playlist ${name} :(`),
+          complete: () => { 
+            this.tracks = [];
+            window.open('https://open.spotify.com/collection/playlists');
+          }
+        });
     }
-  }
-
-  resetPlaylist() {
-    this.trackList = new TrackList();
   }
 }

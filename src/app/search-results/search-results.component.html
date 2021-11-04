@@ -1,13 +1,12 @@
 <div class="card">
     <h2>Results</h2>
-    <ul class="tracklist">
-        <li *ngFor="let track of tracks">
+    <ul class="tracklist" *ngIf="tracklist">
+        <li *ngFor="let track of tracklist.tracks.items">
             <div>
                 <h3>{{ track.name }}</h3>
                 <span class="infos">{{ track.artists[0].name }} | {{ track.album.name }}</span>
             </div>
-            <a (click)="onRemoveTrack(track)">-</a>
+            <a (click)="onAddTrack(track)">+</a>
         </li>
     </ul>
-    <button type="button" class="reverse" (click)="onSave()">Save playlist</button>
 </div>

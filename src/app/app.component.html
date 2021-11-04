@@ -4,8 +4,15 @@
 </div>
 
 <div class="content" role="main">
+  <!-- Search input -->
+  <app-search-input (searched)="onSearch($event)"></app-search-input>
 
-    <!-- Search -->  
-    <app-search class="grid"></app-search>    
+  <div class="row">
+    <!-- Search results -->
+    <app-search-results class="col" [search]="search" (addedTrack)="onTrackAdded($event)"></app-search-results>
+    <!-- Playlist -->
+    <app-playlist class="col" [addedTrack]="track"></app-playlist>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
